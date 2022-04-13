@@ -34,9 +34,11 @@ public abstract class Pokemons {
 	
 	public int ataquePokemon(Pokemons pokemon) {
 		int dano = random.nextInt(1,15);
+		System.out.println(dano);
 		if(this.getTipo() == pokemon.getFraqueza()) {
 			pokemon.danoDeTipo(this.getTipo());
 			pokemon.setVida(pokemon.getVida()-dano*2);
+			System.out.println(dano*2);
 			return dano*2;
 		}
 		if(dano >= 11) {
