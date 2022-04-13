@@ -10,6 +10,11 @@ public abstract class Pokemons {
 	private String efeito;
 	private int vida=75;
 	private static Random random = new Random();
+	private TIPOS fraqueza;
+	
+	public Pokemons() {
+		
+	}
 	
 	public String danoDeTipo(TIPOS tipo) {
 		switch(tipo){
@@ -27,15 +32,19 @@ public abstract class Pokemons {
 		return "SEM EFEITO";
 	}
 	
-	public void tomouDano(int dano) {
-		vida-=dano;
-	}
-	
 	public int ataquePokemon(Pokemons pokemon) {
 		int dano = random.nextInt(1,15);
-		if(dano >= 13) {
-			pokemon.danoDeTipo(pokemon.getTipo());
+		if(this.getTipo() == pokemon.getFraqueza()) {
+			pokemon.danoDeTipo(this.getTipo());
+			pokemon.setVida(pokemon.getVida()-dano*2);
+			return dano*2;
+		}
+		if(dano >= 11) {
+			pokemon.setVida(pokemon.getVida()-dano);
+			pokemon.danoDeTipo(this.getTipo());
 			return dano;
+		}else {
+			pokemon.setVida(pokemon.getVida()-dano);
 		}
 		return dano;
 	}
@@ -70,6 +79,14 @@ public abstract class Pokemons {
 
 	public void setVida(int vida) {
 		this.vida = vida;
+	}
+
+	public TIPOS getFraqueza() {
+		return fraqueza;
+	}
+
+	public void setFraqueza(TIPOS fraqueza) {
+		this.fraqueza = fraqueza;
 	}
 
 }

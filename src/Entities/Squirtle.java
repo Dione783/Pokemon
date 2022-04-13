@@ -6,5 +6,6 @@ public class Squirtle extends Pokemons{
 	public Squirtle() {
 		this.setName("Squirtle");
 		this.setTipo(TIPOS.AGUA);
+		this.setFraqueza(TIPOS.PLANTA);
 	}
 }
